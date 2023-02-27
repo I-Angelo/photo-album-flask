@@ -1,15 +1,13 @@
 
 import os
 from azure.storage.blob import BlobServiceClient
-# from azure.identity import DefaultAzureCredential
 import string, random, requests
 from werkzeug.utils import secure_filename
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 from flask import Flask, request, redirect
 from azure.storage.blob import PublicAccess
-# from azure.storage.blob.blockblobservice import BlockBlobService
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-# from urllib import request
+
 
 
 ACCOUNT_NAME = "photoappalbum"
@@ -17,7 +15,7 @@ ACCOUNT_KEY = "1Njz9FB2kSEpsmbJWn7/V9FlIlRE4SoB4fPoM/ZiuVUb8BpigdrqCfXu22PNkDpvF
 CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=photoappalbum;AccountKey=1Njz9FB2kSEpsmbJWn7/V9FlIlRE4SoB4fPoM/ZiuVUb8BpigdrqCfXu22PNkDpvFtykDQd+C0kC+AStXmD8ww==;EndpointSuffix=core.windows.net"
 CONTAINER_NAME = "powerapps"
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg'])
-# MAX_CONTENT_LENGTH = 20 * 1024 * 1024    # 20 Mb limit
+
 
 
 
@@ -47,9 +45,7 @@ def display_images():
     CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=photoappalbum;AccountKey=1Njz9FB2kSEpsmbJWn7/V9FlIlRE4SoB4fPoM/ZiuVUb8BpigdrqCfXu22PNkDpvFtykDQd+C0kC+AStXmD8ww==;EndpointSuffix=core.windows.net"
     CONTAINER_NAME = "powerapps"
     ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg'])
-    ##
-    # blob_service =BlobServiceClient(account_name=ACCOUNT_NAME, account_key=ACCOUNT_KEY)
-    ##
+  
 
     blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
 
@@ -78,10 +74,9 @@ def delete():
     # Retrieve the list of image blobs to delete from the HTML form
     blobs_to_delete = request.form.getlist('blob')
     
-    # Delete the selected image blobs from Azure Blob storage
+
     blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
-    # blob_client = blob_service_client.get_blob_client("test", "test.txt")
-    # blob_client.delete_blob()
+    
     for blob_name in blobs_to_delete:
         blob_client = blob_service_client.get_blob_client(CONTAINER_NAME, blob_name)
         blob_client.delete_blob()
@@ -89,26 +84,6 @@ def delete():
     
     # Redirect to the home page
     return redirect('/album')
-
-
-# @site.route('/delete-images', methods=['POST', 'GET', "DEL"])
-# def delete_images_test():
-
-#     blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
-
-#     container_client = blob_service_client.get_container_client(CONTAINER_NAME)
-
-#     blob_list = container_client.list_blobs()
-
-
-#     blob_urls = [(container_client.url + "/" + blob.name) for blob in blob_list]
-#     images = []
-#     for blob in blob_list:
-#         url = container_client.url
-#         filename = blob.name 
-#         images.append((url, filename))
-#     return render_template('delete_images.html', images=images, blob_list=blob_list)
-
 
 
 

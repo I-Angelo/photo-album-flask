@@ -23,7 +23,7 @@ app.register_blueprint(site)
 app.register_blueprint(auth)
 app.register_blueprint(api)
 
-app.register_blueprint(auth2)
+
 
 app.json_encoder = JSONEncoder
 app.config.from_object(Config)
