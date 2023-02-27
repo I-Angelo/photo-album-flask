@@ -25,14 +25,14 @@ Flask-WTF==1.1.1
 greenlet==2.0.2
 gunicorn==20.1.0
 idna==3.4
-ipykernel==6.21.2
-ipython==8.10.0
+# ipykernel==6.21.2
+# ipython==8.10.0
 isodate==0.6.1
 itsdangerous==2.1.2
 jedi==0.18.2
 Jinja2==3.1.2
-jupyter_client==8.0.3
-jupyter_core==5.2.0
+# jupyter_client==8.0.3
+# jupyter_core==5.2.0
 Mako==1.2.4
 MarkupSafe==2.1.2
 marshmallow==3.19.0
