@@ -6,10 +6,6 @@ from .authentication.routes import auth
 
 from .api.routes import api
 
-# ##
-from .register_auth.routes import auth2
-# ###
-
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from models import db as root_db, login_manager, ma 
