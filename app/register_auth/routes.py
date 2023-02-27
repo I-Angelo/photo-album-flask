@@ -48,32 +48,6 @@ def get_single_user(id):
     return jsonify(response)
 
 
-# @auth2.route('/register/<id>', methods = ['POST', 'PUT'])
-# # @token_required
-# def update_poison(id): 
-#     r_user = Register.query.get(id)
-#     r_user.email = request.json['email']
-#     r_user.first_name = request.json['first_name']
-#     r_user.last_name = request.json['last_name']
-#     r_user.password = request.json['password']
-#     # r_user.user_token = current_user_token.token
-
-#     db.session.commit()
-#     response = register_schema.dump(r_user)
-#     return jsonify(response)
-
-
-# @auth2.route('/register/<id>', methods = ['DELETE'])
-# # @token_required
-# def delete_poison(id):
-#     # a_user = current_user_token.token
-#     r_user = Register.query.get(id)
-#     db.session.delete(r_user)
-#     db.session.commit()
-#     response = register_schema.dump(r_user)
-#     return jsonify(response)
-
-
 
 @auth2.route('/user_logout')
 def logout():

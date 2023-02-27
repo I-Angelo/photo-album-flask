@@ -6,9 +6,6 @@ from flask_login import login_user, logout_user, LoginManager, current_user, log
 
 auth = Blueprint('auth', __name__, template_folder = 'auth_templates')
 
-# auth2 = Blueprint('auth2', __name__, template_folder = 'auth_templates')
-
-# api = Blueprint('api', __name__, url_prefix = '/api')
 
 @auth.route('/signup', methods = ['GET', 'POST']) 
 def signup():
