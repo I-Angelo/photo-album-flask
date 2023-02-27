@@ -1,0 +1,30 @@
+{% extends 'base.html' %} 
+
+
+{% block content %}
+
+<head>
+    <title>Image Deletion Form</title>
+</head>
+
+<body>
+    <section>
+    <form action="{{ url_for('delete_images') }}" method="POST">
+        {% for blob_name in blob_list %}
+            <img src="{{ url_for('get_image', image_name=blob_name) }}" width="100" height="100">
+            <input type="checkbox" name="image_name" value="{{ blob_name }}">
+        {% endfor %}
+        <br>
+        <input type="submit" value="Delete Selected Images">
+    </form>
+    </section>
+</body>
+
+
+
+
+
+
+
+
+{% endblock %}
