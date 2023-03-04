@@ -117,4 +117,23 @@ def upload_images():
     return render_template('upload_files.html')
 
 
+@site.route('/update', methods=['PUT'])
+def update_images():
+    # Get the uploaded images from the request
+    blobs_to_update = request.form.getlist('blob')
+    
+
+    blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING)
+    
+    for blob_name in blobs_to_update:
+        blob_client = blob_service_client.get_blob_client(CONTAINER_NAME, blob_name)
+        blob_client.delete_blob()
+        # blob_service_client.delete_blob('powerapps', blob_name)
+
+        comment = request.form.get(f'comment_{{blob_name}}')
+
+        blob_client.set_blob_metadata(metadata={'comment': comment})
+    
+    # Redirect to the home page
+    return redirect('/album')
 

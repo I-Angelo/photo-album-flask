@@ -24,6 +24,37 @@
             {% endfor %}
         </div>
     </div>
+<!-- new -->
+
+<div class="slider-delete-album" style="position: relative; text-align: center; margin-top: 75px !important">
+    <!-- <div class="container"  style="padding-top: 100px !important; padding-bottom: 10px !important; margin-bottom: 75px !important; margin-top: 75px !important"> -->
+        <!-- <h3 style="color:blueviolet">Below are the list of the images than you can choose to erase from your album</h3> -->
+    <div>
+        {% for blob in blobs %}
+          <div>
+            <img src="{{ url_for('site.get_image', filename=blob.name) }}" alt="{{ blob.name }}">
+            <div class="comment">{{ blob.metadata.comment }}</div>
+            <form method="post" action="{{ url_for('site.update_images') }}">
+              <input type="hidden" name="blob" value="{{ blob.name }}">
+              <label for="comment_{{ blob.name }}">Add your comment:</label>
+              <textarea id="comment_{{ blob.name }}" name="comment_{{ blob.name }}">{{ blob.metadata.comment }}</textarea>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        {% endfor %}
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- stop new -->
     </section>
     <section>
         <div class="slider-delete-album" style="position: relative; text-align: center; margin-top: 75px !important">
